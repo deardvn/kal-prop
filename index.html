@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kalkulator Properti | PT Jade Karya Trinusa</title>
+
+<meta name="description" content="Kalkulator Properti Zona Nilai Tanah Jatim II skala 1:10.000 PT Jade Karya Trinusa.">
+
+<!-- ================= OPEN GRAPH (WA / FB / LINKEDIN) ================= -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deardvn.github.io/kal-prop/">
+<meta property="og:title" content="Kalkulator Properti | ZNT Jatim II">
+<meta property="og:description" content="Tools analisis Kalkulator Properti PT Jade Karya Trinusa.">
+<meta property="og:image" content="https://deardvn.github.io/kal-prop/og-image.png">
+
+<style>
+/* ================= NEUMORPH VARIABLES ================= */
+:root{
+  --bg:#e0e5ec;
+  --card-bg:#e0e5ec;
+  --text:#333;
+  --text-sub:#666;
+
+  --accent:#4c6ef5;
+  --accent-hover:#364fc7;
+
+  --soft-shadow:
+    8px 8px 16px #b8bcc2,
+   -8px -8px 16px #ffffff;
+
+  --inset-shadow:
+    inset 6px 6px 12px #b8bcc2,
+    inset -6px -6px 12px #ffffff;
+}
+
+/* ================= DARK MODE ================= */
+body.dark{
+  --bg:#1e1e1e;
+  --card-bg:#1e1e1e;
+  --text:#e5e5e5;
+  --text-sub:#aaa;
+
+  --accent:#74c0fc;
+  --accent-hover:#4dabf7;
+
+  --soft-shadow:
+    8px 8px 16px #141414,
+   -8px -8px 16px #2a2a2a;
+
+  --inset-shadow:
+    inset 6px 6px 12px #141414,
+    inset -6px -6px 12px #2a2a2a;
+}
+
+/* ================= BASE ================= */
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Segoe UI,Tahoma,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ================= CONTAINER ================= */
+.container{
+  max-width:850px;
+  margin:2rem auto;
+  padding:2rem;
+  border-radius:28px;
+  background:var(--card-bg);
+  box-shadow:var(--soft-shadow);
+}
+
+/* ================= TOPBAR ================= */
+.topbar{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.topbar button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:var(--card-bg);
+  box-shadow:var(--soft-shadow);
+  cursor:pointer;
+}
+
+.topbar button:hover{box-shadow:var(--inset-shadow)}
+
+/* ================= HEADER PROJECT INFO ================= */
+.header-info{
+  text-align:center;
+  margin-bottom:1.5rem;
+}
+
+.company-name{
+  font-size:0.95rem;
+  font-weight:700;
+  letter-spacing:1px;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:0.3rem;
+}
+
+h2{
+  text-align:center;
+  margin:0.2rem 0;
+  color:var(--text);
+  font-size:1.6rem;
+}
+
+.project-subtitle{
+  font-size:0.9rem;
+  color:var(--text-sub);
+  margin-top:0.4rem;
+  font-weight:500;
+}
+
+/* ================= INPUT FORM ================= */
+.form-group{
+  margin-top:1.2rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.4rem;
+}
+
+label{
+  font-size:0.9rem;
+  font-weight:600;
+  color:var(--text);
+}
+
+input, select{
+  height:48px;
+  border:none;
+  border-radius:14px;
+  padding:0 1rem;
+  font-size:1rem;
+  background:var(--card-bg);
+  box-shadow:var(--inset-shadow);
+  color:var(--text);
+}
+
+input:focus, select:focus{outline:none}
+
+/* ================= BUTTONS ================= */
+.button-container{
+  margin-top:2rem;
+  display:flex;
+  justify-content:center;
+}
+
+.action-button{
+  width:100%;
+  max-width:260px;
+  height:48px;
+  border:none;
+  border-radius:18px;
+  font-weight:bold;
+  background:var(--card-bg);
+  color:var(--accent);
+  box-shadow:var(--soft-shadow);
+  cursor:pointer;
+}
+
+.action-button:hover{box-shadow:var(--inset-shadow)}
+
+/* ================= RESULT ================= */
+#hasil{
+  margin-top:2.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+.result-line{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem;
+  border-radius:18px;
+  background:var(--card-bg);
+  box-shadow:var(--soft-shadow);
+}
+
+.result-line strong{
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  color:var(--accent);
+}
+
+/* ================= FOOTER INSTAGRAM ================= */
+.footer{
+  margin-top:3rem;
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.insta-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.6rem;
+  padding:1.2rem 2.5rem;
+  border-radius:22px;
+  background:var(--card-bg);
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:var(--soft-shadow);
+  transition:.25s ease;
+}
+
+.insta-card:hover{
+  box-shadow:var(--inset-shadow);
+  transform:translateY(2px);
+  color:var(--accent);
+}
+
+.insta-icon{
+  width:28px;
+  height:28px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="topbar">
+    <button onclick="toggleTheme()">🌙</button>
+  </div>
+
+  <div class="header-info">
+    <div class="company-name">PT Jade Karya Trinusa</div>
+    <h2>Kalkulator Penyesuaian Properti</h2>
+    <div class="project-subtitle">Proyek: Zona Nilai Tanah Jatim II skala 1:10.000</div>
+  </div>
+
+  <div class="form-group">
+    <label for="harga">Harga Transaksi / Penawaran (Rp):</label>
+    <input type="text" id="harga" placeholder="Masukkan harga" oninput="formatRupiah(this)">
+  </div>
+
+  <div class="form-group">
+    <label for="luas">Luas Tanah (m²):</label>
+    <input type="number" id="luas" placeholder="Masukkan luas tanah">
+  </div>
+
+  <div class="form-group">
+    <label for="jenis">Jenis Data:</label>
+    <select id="jenis">
+      <option value="transaksi">Transaksi Pasar</option>
+      <option value="penawaran">Penawaran (Diskon Pasar)</option>
+    </select>
+  </div>
+
+  <div class="button-container">
+    <button class="action-button" onclick="hitungProperti()">Hitung Penyesuaian</button>
+  </div>
+
+  <div id="hasil"></div>
+
+  <div class="footer">
+    <a href="https://instagram.com/dheadeviana_" target="_blank" class="insta-card">
+      <span>@dheadeviana_</span>
+      <svg class="insta-icon" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1"/>
+      </svg>
+    </a>
+
+    <a href="https://instagram.com/hasanasdllh" target="_blank" class="insta-card">
+      <span>@hasanasdllh</span>
+      <svg class="insta-icon" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1"/>
+      </svg>
+    </a>
+  </div>
+
+</div>
+
+<script>
+/* FORMAT RUPIAH */
+function formatRupiah(el){
+  let v = el.value.replace(/\D/g,'');
+  el.value = v ? new Intl.NumberFormat('id-ID').format(v) : '';
+}
+
+/* HITUNG KALKULATOR PROPERTI */
+function hitungProperti(){
+  const hargaRaw = document.getElementById("harga").value.replace(/\./g,'');
+  const luasRaw = document.getElementById("luas").value;
+  const jenis = document.getElementById("jenis").value;
+  const hasil = document.getElementById("hasil");
+
+  if(!hargaRaw || !luasRaw || parseFloat(luasRaw) <= 0){
+    hasil.innerHTML = `
+      <div class="result-line" style="background:var(--danger-bg); color:var(--danger-text);">
+        <span>Error</span>
+        <strong>Harap isi harga dan luas tanah dengan benar!</strong>
+      </div>`;
+    return;
+  }
+
+  let harga = parseFloat(hargaRaw);
+  let luas = parseFloat(luasRaw);
+  
+  // Jika jenis penawaran, beri indikasi penyesuaian diskon
+  let indikasiHarga = jenis === "penawaran" ? harga * 0.9 : harga;
+  let hargaPerMeter = indikasiHarga / luas;
+
+  hasil.innerHTML = `
+    <div class="result-line">
+      <span>Indikasi Nilai Total</span>
+      <strong>Rp ${indikasiHarga.toLocaleString('id-ID')}</strong>
+    </div>
+    <div class="result-line">
+      <span>Harga Satuan Tanah / m²</span>
+      <strong>Rp ${Math.round(hargaPerMeter).toLocaleString('id-ID')} / m²</strong>
+    </div>`;
+}
+
+/* DARK MODE */
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
