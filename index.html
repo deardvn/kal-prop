@@ -1,345 +1,396 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Penawaran Properti | PT Jade Karya Trinusa</title>
+  
+  <link rel="icon" type="image/png" href="icon.png">
 
-<title>Kalkulator Properti | PT Jade Karya Trinusa</title>
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kalkulator Penawaran Properti | PT Jade Karya Trinusa">
+  <meta property="og:description" content="Aplikasi perhitungan estimasi nilai penawaran properti dan nilai pasar.">
+  <meta property="og:image" content="kalkulator-penawaran.jpg">
 
-<meta name="description" content="Kalkulator Properti Zona Nilai Tanah Jatim II skala 1:10.000 PT Jade Karya Trinusa.">
+  <style>
+    /* ================= MAROON CORPORATE THEME ================= */
+    :root {
+      --maroon-primary: #800000;
+      --maroon-dark: #5a0000;
+      --maroon-hover: #990000;
+      --bg-light: #f5f2f2;
+      --card-bg: #ffffff;
+      --border-color: #e0d8d8;
+      --text-main: #2b2b2b;
+      --text-muted: #666666;
+      --success-bg: #f0fdf4;
+      --success-border: #bbf7d0;
+      --success-text: #166534;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --danger-text: #991b1b;
+    }
 
-<!-- ================= OPEN GRAPH (WA / FB / LINKEDIN) ================= -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://deardvn.github.io/kal-prop/">
-<meta property="og:title" content="Kalkulator Properti | ZNT Jatim II">
-<meta property="og:description" content="Tools analisis Kalkulator Properti PT Jade Karya Trinusa.">
-<meta property="og:image" content="https://deardvn.github.io/kal-prop/og-image.png">
+    body.dark {
+      --maroon-primary: #ff4d4d;
+      --maroon-dark: #cc0000;
+      --maroon-hover: #ff6666;
+      --bg-light: #181212;
+      --card-bg: #241c1c;
+      --border-color: #3d3030;
+      --text-main: #f5f2f2;
+      --text-muted: #b3a6a6;
+      --success-bg: #064e3b;
+      --success-border: #047857;
+      --success-text: #a7f3d0;
+      --danger-bg: #7f1d1d;
+      --danger-border: #b91c1c;
+      --danger-text: #fecaca;
+    }
 
-<style>
-/* ================= NEUMORPH VARIABLES ================= */
-:root{
-  --bg:#e0e5ec;
-  --card-bg:#e0e5ec;
-  --text:#333;
-  --text-sub:#666;
+    * { box-sizing: border-box; }
 
-  --accent:#4c6ef5;
-  --accent-hover:#364fc7;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
 
-  --soft-shadow:
-    8px 8px 16px #b8bcc2,
-   -8px -8px 16px #ffffff;
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 2.5rem;
+      border-radius: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(128, 0, 0, 0.05);
+    }
 
-  --inset-shadow:
-    inset 6px 6px 12px #b8bcc2,
-    inset -6px -6px 12px #ffffff;
-}
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.5rem;
+    }
 
-/* ================= DARK MODE ================= */
-body.dark{
-  --bg:#1e1e1e;
-  --card-bg:#1e1e1e;
-  --text:#e5e5e5;
-  --text-sub:#aaa;
+    .topbar button {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      cursor: pointer;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
 
-  --accent:#74c0fc;
-  --accent-hover:#4dabf7;
+    .topbar button:hover {
+      background: var(--bg-light);
+    }
 
-  --soft-shadow:
-    8px 8px 16px #141414,
-   -8px -8px 16px #2a2a2a;
+    /* HEADER TITLES */
+    .company-tag {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
 
-  --inset-shadow:
-    inset 6px 6px 12px #141414,
-    inset -6px -6px 12px #2a2a2a;
-}
+    h2 {
+      text-align: center;
+      margin: 0;
+      color: var(--text-main);
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-/* ================= BASE ================= */
-*{box-sizing:border-box}
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
 
-body{
-  margin:0;
-  font-family:Segoe UI,Tahoma,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+    /* FORM & INPUTS */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
 
-/* ================= CONTAINER ================= */
-.container{
-  max-width:850px;
-  margin:2rem auto;
-  padding:2rem;
-  border-radius:28px;
-  background:var(--card-bg);
-  box-shadow:var(--soft-shadow);
-}
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
 
-/* ================= TOPBAR ================= */
-.topbar{
-  display:flex;
-  justify-content:flex-end;
-}
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: var(--card-bg);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-.topbar button{
-  width:42px;
-  height:42px;
-  border:none;
-  border-radius:50%;
-  background:var(--card-bg);
-  box-shadow:var(--soft-shadow);
-  cursor:pointer;
-}
+    input:focus, select:focus {
+      border-color: var(--maroon-primary);
+      box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.12);
+    }
 
-.topbar button:hover{box-shadow:var(--inset-shadow)}
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
 
-/* ================= HEADER PROJECT INFO ================= */
-.header-info{
-  text-align:center;
-  margin-bottom:1.5rem;
-}
+    @media (max-width: 600px) {
+      .row { grid-template-columns: 1fr; }
+    }
 
-.company-name{
-  font-size:0.95rem;
-  font-weight:700;
-  letter-spacing:1px;
-  color:var(--accent);
-  text-transform:uppercase;
-  margin-bottom:0.3rem;
-}
+    /* BUTTONS */
+    .button-container {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-h2{
-  text-align:center;
-  margin:0.2rem 0;
-  color:var(--text);
-  font-size:1.6rem;
-}
+    .action-button {
+      flex: 1;
+      min-width: 160px;
+      height: 44px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: var(--maroon-primary);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
 
-.project-subtitle{
-  font-size:0.9rem;
-  color:var(--text-sub);
-  margin-top:0.4rem;
-  font-weight:500;
-}
+    .action-button:hover {
+      background: var(--maroon-hover);
+    }
 
-/* ================= INPUT FORM ================= */
-.form-group{
-  margin-top:1.2rem;
-  display:flex;
-  flex-direction:column;
-  gap:0.4rem;
-}
+    .action-button:active {
+      transform: translateY(1px);
+    }
 
-label{
-  font-size:0.9rem;
-  font-weight:600;
-  color:var(--text);
-}
+    .action-button.secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
 
-input, select{
-  height:48px;
-  border:none;
-  border-radius:14px;
-  padding:0 1rem;
-  font-size:1rem;
-  background:var(--card-bg);
-  box-shadow:var(--inset-shadow);
-  color:var(--text);
-}
+    .action-button.secondary:hover {
+      background: var(--bg-light);
+    }
 
-input:focus, select:focus{outline:none}
+    /* HASIL */
+    #hasil {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
 
-/* ================= BUTTONS ================= */
-.button-container{
-  margin-top:2rem;
-  display:flex;
-  justify-content:center;
-}
+    .result-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
 
-.action-button{
-  width:100%;
-  max-width:260px;
-  height:48px;
-  border:none;
-  border-radius:18px;
-  font-weight:bold;
-  background:var(--card-bg);
-  color:var(--accent);
-  box-shadow:var(--soft-shadow);
-  cursor:pointer;
-}
+    .result-line strong {
+      font-weight: 700;
+      color: var(--maroon-primary);
+    }
 
-.action-button:hover{box-shadow:var(--inset-shadow)}
+    /* FOOTER */
+    .footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
 
-/* ================= RESULT ================= */
-#hasil{
-  margin-top:2.5rem;
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
+    .footer a {
+      color: var(--maroon-primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-.result-line{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:1rem;
-  border-radius:18px;
-  background:var(--card-bg);
-  box-shadow:var(--soft-shadow);
-}
+    .footer a:hover {
+      text-decoration: underline;
+    }
 
-.result-line strong{
-  white-space:nowrap;
-  font-variant-numeric:tabular-nums;
-  color:var(--accent);
-}
-
-/* ================= FOOTER INSTAGRAM ================= */
-.footer{
-  margin-top:3rem;
-  display:flex;
-  justify-content:center;
-  gap:1rem;
-  flex-wrap:wrap;
-}
-
-.insta-card{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.6rem;
-  padding:1.2rem 2.5rem;
-  border-radius:22px;
-  background:var(--card-bg);
-  color:var(--text);
-  text-decoration:none;
-  font-weight:600;
-  box-shadow:var(--soft-shadow);
-  transition:.25s ease;
-}
-
-.insta-card:hover{
-  box-shadow:var(--inset-shadow);
-  transform:translateY(2px);
-  color:var(--accent);
-}
-
-.insta-icon{
-  width:28px;
-  height:28px;
-  stroke:currentColor;
-  fill:none;
-  stroke-width:2;
-}
-</style>
+    .insta-icon {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-
-  <div class="topbar">
-    <button onclick="toggleTheme()">🌙</button>
-  </div>
-
-  <div class="header-info">
-    <div class="company-name">PT Jade Karya Trinusa</div>
-    <h2>Kalkulator Penyesuaian Properti</h2>
-    <div class="project-subtitle">Proyek: Zona Nilai Tanah Jatim II skala 1:10.000</div>
-  </div>
-
-  <div class="form-group">
-    <label for="harga">Harga Transaksi / Penawaran (Rp):</label>
-    <input type="text" id="harga" placeholder="Masukkan harga" oninput="formatRupiah(this)">
-  </div>
-
-  <div class="form-group">
-    <label for="luas">Luas Tanah (m²):</label>
-    <input type="number" id="luas" placeholder="Masukkan luas tanah">
-  </div>
-
-  <div class="form-group">
-    <label for="jenis">Jenis Data:</label>
-    <select id="jenis">
-      <option value="transaksi">Transaksi Pasar</option>
-      <option value="penawaran">Penawaran (Diskon Pasar)</option>
-    </select>
-  </div>
-
-  <div class="button-container">
-    <button class="action-button" onclick="hitungProperti()">Hitung Penyesuaian</button>
-  </div>
-
-  <div id="hasil"></div>
-
-  <div class="footer">
-    <a href="https://instagram.com/dheadeviana_" target="_blank" class="insta-card">
-      <span>@dheadeviana_</span>
-      <svg class="insta-icon" viewBox="0 0 24 24">
-        <rect x="2" y="2" width="20" height="20" rx="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1"/>
-      </svg>
-    </a>
-
-    <a href="https://instagram.com/hasanasdllh" target="_blank" class="insta-card">
-      <span>@hasanasdllh</span>
-      <svg class="insta-icon" viewBox="0 0 24 24">
-        <rect x="2" y="2" width="20" height="20" rx="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1"/>
-      </svg>
-    </a>
-  </div>
-
-</div>
-
-<script>
-/* FORMAT RUPIAH */
-function formatRupiah(el){
-  let v = el.value.replace(/\D/g,'');
-  el.value = v ? new Intl.NumberFormat('id-ID').format(v) : '';
-}
-
-/* HITUNG KALKULATOR PROPERTI */
-function hitungProperti(){
-  const hargaRaw = document.getElementById("harga").value.replace(/\./g,'');
-  const luasRaw = document.getElementById("luas").value;
-  const jenis = document.getElementById("jenis").value;
-  const hasil = document.getElementById("hasil");
-
-  if(!hargaRaw || !luasRaw || parseFloat(luasRaw) <= 0){
-    hasil.innerHTML = `
-      <div class="result-line" style="background:var(--danger-bg); color:var(--danger-text);">
-        <span>Error</span>
-        <strong>Harap isi harga dan luas tanah dengan benar!</strong>
-      </div>`;
-    return;
-  }
-
-  let harga = parseFloat(hargaRaw);
-  let luas = parseFloat(luasRaw);
-  
-  // Jika jenis penawaran, beri indikasi penyesuaian diskon
-  let indikasiHarga = jenis === "penawaran" ? harga * 0.9 : harga;
-  let hargaPerMeter = indikasiHarga / luas;
-
-  hasil.innerHTML = `
-    <div class="result-line">
-      <span>Indikasi Nilai Total</span>
-      <strong>Rp ${indikasiHarga.toLocaleString('id-ID')}</strong>
+  <div class="container">
+    
+    <div class="topbar">
+      <button onclick="toggleTheme()">🌙</button>
     </div>
-    <div class="result-line">
-      <span>Harga Satuan Tanah / m²</span>
-      <strong>Rp ${Math.round(hargaPerMeter).toLocaleString('id-ID')} / m²</strong>
-    </div>`;
-}
 
-/* DARK MODE */
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-}
-</script>
+    <!-- HEADER BRANDING -->
+    <div class="company-tag">PT JADE KARYA TRINUSA</div>
+    <h2>Kalkulator Penawaran Properti</h2>
+    <div class="subtitle">Proyek: Zona Nilai Tanah Jatim II skala 1:10.000</div>
 
+    <form id="calcForm" onsubmit="event.preventDefault(); hitung();">
+      <div class="row">
+        <div class="form-group">
+          <label for="hargaPenawaran">Harga Penawaran (Rp)</label>
+          <input type="text" id="hargaPenawaran" placeholder="Contoh: 500.000.000" oninput="formatInputRupiah(this)" required>
+        </div>
+        <div class="form-group">
+          <label for="diskonMargin">Margin Negosiasi / Diskon (%)</label>
+          <input type="number" id="diskonMargin" placeholder="Contoh: 10" step="0.1" value="10" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="luasTanah">Luas Tanah (m²)</label>
+          <input type="number" id="luasTanah" placeholder="Contoh: 120" step="any">
+        </div>
+        <div class="form-group">
+          <label for="luasBangunan">Luas Bangunan (m²)</label>
+          <input type="number" id="luasBangunan" placeholder="Contoh: 70" step="any">
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="button" class="action-button secondary" onclick="resetForm()">Reset</button>
+        <button type="submit" class="action-button">Hitung Indikasi Nilai</button>
+      </div>
+    </form>
+
+    <div id="hasil"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>&copy; PT Jade Karya Trinusa</span>
+      <span>•</span>
+      <a href="https://instagram.com/dheadeviana_" target="_blank">
+        <svg class="insta-icon" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1"/>
+        </svg>
+        @dheadeviana_
+      </a>
+      <span>•</span>
+      <a href="https://instagram.com/hasanasdllh" target="_blank">
+        <svg class="insta-icon" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1"/>
+        </svg>
+        @hasanasdllh
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    function formatInputRupiah(el) {
+      let v = el.value.replace(/\D/g, '');
+      el.value = v ? new Intl.NumberFormat('id-ID').format(v) : '';
+    }
+
+    function hitung() {
+      const rawHarga = document.getElementById('hargaPenawaran').value.replace(/\./g, '');
+      const harga = parseFloat(rawHarga);
+      const diskonPercent = parseFloat(document.getElementById('diskonMargin').value) || 0;
+      const lt = parseFloat(document.getElementById('luasTanah').value) || 0;
+      const lb = parseFloat(document.getElementById('luasBangunan').value) || 0;
+
+      const hasilDiv = document.getElementById('hasil');
+      hasilDiv.innerHTML = '';
+
+      if (isNaN(harga) || harga <= 0) {
+        hasilDiv.innerHTML = `
+          <div class="result-line" style="border-color: var(--danger-border); background: var(--danger-bg); color: var(--danger-text);">
+            <span>Error</span>
+            <strong>Masukkan harga penawaran yang valid!</strong>
+          </div>`;
+        return;
+      }
+
+      const estimasiNilaiPasar = harga * (1 - (diskonPercent / 100));
+      
+      let htmlContent = `
+        <div class="result-line">
+          <span>Harga Penawaran Awali</span>
+          <strong>Rp ${harga.toLocaleString('id-ID')}</strong>
+        </div>
+        <div class="result-line">
+          <span>Indikasi Nilai Pasar (Diskon ${diskonPercent}%)</span>
+          <strong>Rp ${Math.round(estimasiNilaiPasar).toLocaleString('id-ID')}</strong>
+        </div>`;
+
+      if (lt > 0) {
+        const indikasiPerMeterTanah = estimasiNilaiPasar / lt;
+        htmlContent += `
+          <div class="result-line">
+            <span>Indikasi Nilai / m² Tanah</span>
+            <strong>Rp ${Math.round(indikasiPerMeterTanah).toLocaleString('id-ID')} / m²</strong>
+          </div>`;
+      }
+
+      hasilDiv.innerHTML = htmlContent;
+    }
+
+    function resetForm() {
+      document.getElementById('calcForm').reset();
+      document.getElementById('hasil').innerHTML = '';
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
 </body>
 </html>
